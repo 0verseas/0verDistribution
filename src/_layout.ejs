@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>海外聯招會各校下載系統</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="overseas">
+    <meta name="author" content="overseas">
+    <script src="./js/browser.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CarlosBonetti/jquery-loading/dist/jquery.loading.min.css">
+    <!-- Custom styles for this template -->
+    <link href="./css/style.css" rel="stylesheet">
+    <link href="./css/<%= current.source %>.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/CarlosBonetti/jquery-loading/dist/jquery.loading.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="./env.js"></script>
+    <!-- <script src="./js/miscellaneous.js"></script> -->
+     <script src="./js/user.js"></script>
+    <!-- <script src="./js/schoolEditor.js"></script> 
+    <script src="./js/schoolReviewer.js"></script>
+    <script src="./js/office.js"></script>
+    <script src="./js/student.js"></script> -->
+    <script>
+        function openLoading() {
+            $('body').loading();
+            $('.loading-overlay').css({'z-index': 11111, top: 0});
+        }
+
+        function stopLoading() {
+            $('body').loading('stop');
+        }
+
+        openLoading();
+
+        if(!Browser.checkBrowserSupport()) {
+            alert('請使用 Chrome, Firefox, Safari 或 Edge 版本 > 14 的瀏覽器。');
+            window.history.back();
+        }
+    </script>
+    <!-- <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId            : '319347395576034',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v2.11'
+            });
+        };
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script> -->
+</head>
+<body>
+<div id="app" class="container-fluid">
+    <% if (current.source != 'login') { -%>
+    <%- partial("components/_sidebar")%>
+    <%- partial("components/_accountEditModal")%>
+    <% } else { -%>
+    <%- partial("login")%>
+    <% } -%>
+    <!-- <div class="fb-customerchat"
+         page_id="1620029011621660"
+         minimized="true">
+    </div> -->
+    <footer>
+        <div class="row">
+            <div class="col-12 text-center">
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="./js/<%= current.source %>.js"></script>
+</body>
+</html>

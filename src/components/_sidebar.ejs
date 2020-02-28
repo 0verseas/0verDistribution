@@ -1,0 +1,79 @@
+<%
+function isActive(page) {
+    return current.source == page ? 'active' : '';
+}
+%>
+<script>
+    User.checkLogin('school_editor');
+</script>
+<div class="row">
+    <button id="btn-toggle" class="btn btn-sm btn-secondary">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    <div id="sidebarWrap" class="col-3 col-lg-2">
+        <div id="sidebar">
+            <div class="row">
+                <div class="col-xl-3">
+                    <img src="./img/logo.png" alt="overseas" width="100%">
+                </div>
+                <div class="col-xl-9">
+                    海外聯招會各校下載系統
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-12">
+                    <div id="menu" class="list-group">
+                        <!-- <a href="#" class="list-group-item list-group-item-action category">帳號資料&nbsp;&nbsp;<small><i
+                                    class="fa fa-chevron-down" aria-hidden="true"></i></small></a>
+                        <a href="./schoolEditorInfo.html"
+                            class="list-group-item list-group-item-action <%= isActive('schoolEditorInfo') %> sub">學校資料編輯</a> -->
+                        <!--<a href="./schoolReviewerInfo.html" class="list-group-item list-group-item-action <%= isActive('schoolReviewerInfo') %> sub">個人申請學生資料審核</a>-->
+                        <!-- <a href="./officeInfo.html"
+                            class="list-group-item list-group-item-action <%= isActive('officeInfo') %> sub">海外收件單位</a>
+                        <a href="./studentInfo.html"
+                            class="list-group-item list-group-item-action <%= isActive('studentInfo') %>">學生資料</a>
+                        <a href="#" class="list-group-item list-group-item-action category">清冊&nbsp;&nbsp;<small><i
+                                    class="fa fa-chevron-down" aria-hidden="true"></i></small></a>
+                        <a href="./receiptList.html"
+                            class="list-group-item list-group-item-action <%= isActive('receiptList') %> sub">收件清冊</a>
+                        <a href="./distributionList.html"
+                            class="list-group-item list-group-item-action <%= isActive('distributionList') %> sub">分發清冊</a>
+                        <a href="./admittedList.html"
+                            class="list-group-item list-group-item-action <%= isActive('admittedList') %> sub">錄取清冊
+                            (Email)</a>
+                        <a href="./estimateAdmissionCountFile.html"
+                            class="list-group-item list-group-item-action <%= isActive('estimateAdmissionCountFile') %> sub">招生名額資料</a> -->
+                        <a href="./distributionList.html"
+                            class="list-group-item list-group-item-action <%= isActive('distributionList') %> sub">下載分發資料</a>
+                        <a class="list-group-item list-group-item-action ">歷年查詢</a>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <h5 class="d-inline">帳號資訊</h5>
+                        <span id="badge-role" class="badge badge-warning float-right">
+                            <!-- 管理員 --></span>
+                    </div>
+                    <div id="userSchool">
+                        <!-- 國立暨南國際大學 -->
+                    </div>
+                    <div id="userName">
+                        <!-- 吳富悅 ??? sunny rich yuer -->
+                    </div><br />
+                    <button id="btn-editAccount" class="btn btn-secondary btn-block">編輯</button>
+                    <button id="btn-logout" class="btn btn-secondary btn-block">登出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="pageContent" class="col-md-9 col-lg-10">
+        <%- yield %>
+    </div>
+</div>
+<link rel="stylesheet" href="./css/sidebar.css">
+<script src="./js/accountEditModal.js"></script>
+<script src="./js/sidebar.js"></script>
