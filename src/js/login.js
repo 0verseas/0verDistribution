@@ -21,6 +21,7 @@ var login = (function () {
     // 登入：
     // 200: 跳轉至 /school
     // 401: 顯示錯誤訊息
+    // TODO: 帳號密碼錯誤會跳404？
     function _login(e) {
         if (e.type == 'keydown' && e.keyCode != 13) {
             return;
@@ -49,6 +50,7 @@ var login = (function () {
             User.checkLogin('school_editor');
             window.location.href = './distributionList.html'
         }).catch(function (err) {
+            console.log(err);
             if (err == 401) {
                 $errMsg.finish().show().text('帳號密碼錯誤。').fadeOut(1500);
             } else if (err == 429) {  // 429 Too Many Requests

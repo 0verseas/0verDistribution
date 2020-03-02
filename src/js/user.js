@@ -39,16 +39,16 @@ var User = (function () {
                 throw res.status;
             }
         }).then(function (json) {
-            if (!json[permission] || json[permission].has_banned) {                
+            if (!json[permission] || json[permission].has_banned) {  
+                alert("權限不足");              
                 location.replace('/login.html');
-                alert("權限不足");
             } else {
                 _setUserInfo(json);
             }
         }).catch(function (err) {
-            if (err == 401) {     
+            if (err == 401) {    
+                alert("權限不足");                 
                 location.replace('/login.html');
-                alert("權限不足");
             }
         });
     }
@@ -77,12 +77,39 @@ var User = (function () {
         return _userInfo
     }
 
+    // function getLoginUserInfo() {
+    //     isLogin().then(function (res) {
+    //         if (res.ok) {
+    //             console.log("101112", res)
+    //             return res.json();
+    //         } else {
+    //             throw res.status;
+    //         }
+    //     }).then(function (json) {
+    //         console.log("123", json)
+    //         if (json.has_banned) {
+    //             alert("權限不足");
+    //             location.replace('/login.html');
+    //         } else {
+    //             console.log("456", json)
+    //             return json;
+    //         }
+    //         console.log("789")
+    //     }).catch(function (err) {
+    //         if (err == 401) {
+    //             alert("權限不足");
+    //             location.replace('/login.html');
+    //         }
+    //     });
+    // }
+
     return {
         login,
         logout,
         isLogin,
         checkLogin,
         getUserInfo,
-        update
+        update,
+        //getLoginUserInfo
     }
 })();

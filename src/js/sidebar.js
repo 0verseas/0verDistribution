@@ -44,11 +44,12 @@ var Sidebar = (function () {
 
     function showUserInfo() {
         var userInfo = User.getUserInfo();
+        //console.log(userInfo);
         if (!userInfo) {
             setTimeout(showUserInfo, 1);
             return;
         }
-        var role = userInfo.admin.has_admin ? '上帝' : '一般管理員';
+        var role = userInfo.name;
         $roleBadge.text(role);
         $userName.text(userInfo.name);
     }
