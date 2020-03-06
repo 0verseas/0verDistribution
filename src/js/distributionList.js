@@ -96,13 +96,13 @@ var distributionList = (function () {
                         }
 
                     }).then(() => {
-                        // stopLoading();
+                        loading.complete();
                     }).catch((err) => {
                         err.json && err.json().then((data) => {
                             console.error(data);
                             alert(`ERROR: \n${data.messages[0]}`);
 
-                            stopLoading();
+                            loading.complete();
                         });
                     })
             }

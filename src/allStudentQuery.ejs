@@ -1,0 +1,117 @@
+<div class="row">
+    <div class="col-md-7 col-6">
+        <h1>歷年錄取學生資料查詢</h1>
+    </div>
+</div>
+<hr>
+
+<div class="alert alert-info" role="alert" >
+    <ol style="font-weight: bold; line-height: 30px;">
+        <li>依「外國學生來臺就學辦法」規定，申請人須未曾以僑生或港澳生身分在臺就學，且未於當學年度接受本會分發者。</li>
+        <li>本頁面提供查詢名單為<font color="red"> 100- <%= year %> 學年度本會分發之僑生及港澳生，並不代表分發學生已註冊在學，僅提供參考</font>。
+        如欲了解學生就學情況，敬請向相關單位或錄取學校詢問。</li>
+        <li>現行法規已開放各校自行招收僑生及港澳生，故<font color="red">本系統資料不含各校自招管道之錄取學生</font>。</li>
+    </ol>
+</div>
+<div class="alert alert-danger" role="alert">
+    <span style="font-weight: bold; line-height: 30px;">最新更新日期： <%= updateTime %></span>
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white" >
+                1. 使用 關鍵字 查詢
+            </div>
+            <div class="card-body ">
+                <div class="row">
+                    <!-- <div class="form-row col">
+                        <label for="select_year">分發年度
+                        <select class="form-control" id="select_year" name="select_year">
+                            <option>不分年</option>
+                            <option>2020 秋季入學</option>
+                            <option>2019 秋季入學</option>
+                            <option>2018 秋季入學</option>
+                            <option>2017 秋季入學</option>
+                        </select>
+                    </div> -->
+                    <div class="form-group col-12 col-sm-6 col-md-3">
+                        <label for="year">分發年度
+                        <select id="select_year" name="year" data-width="auto">
+                            <option value="all" selected>不分年</option>
+                            <option value="2020">2020 秋季入學</option>
+                            <option value="2019">2019 秋季入學</option>
+                            <option value="2018">2018 秋季入學</option>
+                            <option value="2017">2017 秋季入學</option>
+                            <option value="2016">2016 秋季入學</option>
+                            <option value="2015">2015 秋季入學</option>
+                            <option value="2014">2014 秋季入學</option>
+                            <option value="2013">2013 秋季入學</option>
+                            <option value="2012">2012 秋季入學</option>
+                            <option value="2011">2011 秋季入學</option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="form-group col">
+                        <label for="select_field">查詢標的</label>
+                        <select class="form-control" id="select_field" >
+                            <option>中 / 英文姓名（ex:王大明） </option>
+                            <option>生日（ex: 20001231）</option>
+                            <option>僑居地 Id（ex: A123456(7)）</option>
+                        </select>
+                    </div> -->
+
+                    <div class="form-group col-12 col-sm-6 col-md-3">
+                        <label for="field">查詢標的
+                        <select id="select_field" name="field" data-width="auto">
+                            <option value="name">中 / 英文姓名（ex:王大明） </option>
+                            <option value="birthday">生日（ex: 20001231）</option>
+                            <option value="idNo">僑居地 Id（ex: A123456(7)）</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-12 col-sm-6 col-md-3">
+                        <input type="text" class="form-control" id="keyword" placeholder="鍵入關鍵字">
+                    </div>
+
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <button class="btn btn-primary mx-auto " id="search-button" type="submit"
+                            onmousedown="event.preventDefault()">查詢</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div id="resultBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                2. 使用上傳 Excel 查詢
+            </div>
+            <div class="card-body">
+                <button id="btn-upload" class="btn btn-info"><i class="fa fa-upload" aria-hidden="true"></i> 上傳
+                    Excel</button>
+                <input id="file-input" type="file" class="file-upload" accept=".csv" style="display: none" />
+
+                <hr>
+                <div id="excelResultBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
