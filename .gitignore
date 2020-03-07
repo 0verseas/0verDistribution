@@ -59,6 +59,8 @@ typings/
 .env
 env.js
 
+src/_harp.json
+
 dist/
 .idea/
 

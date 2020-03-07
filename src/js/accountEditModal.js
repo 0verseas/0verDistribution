@@ -10,6 +10,7 @@ $(document).ready(function () {
         const passwordSecond = $('[name=password-second]');
         const name = $('[name=name]');
         const eng_name = $('[name=eng-name]');
+        const organization = $('[name=organization]');
         const jobTitle = $('[name=job-title]');
         const email = $('[name=email]');
         const phone = $('[name=phone]');
@@ -64,6 +65,7 @@ $(document).ready(function () {
             name.attr('value', user.name);
             eng_name.attr('value', user.eng_name);
             jobTitle.attr('value', user.job_title);
+            organization.attr('value', user.school_editor.organization);
             email.attr('value', user.email);
             phone.attr('value', user.phone);
             // 確認身份再選擇跑哪一個modal
@@ -110,23 +112,33 @@ $(document).ready(function () {
                 name: name.val(),
                 eng_name: eng_name.val(),
                 job_title: jobTitle.val(),
+                organization: organization.val(),
                 phone: phone.val(),
                 has_banned: false,
                 has_admin: true,
+                departments: {
+                    bachelor: [],
+                    two_year: [],
+                    master: [],
+                    phd: []
+                }
             };
 
-            openLoading();
+            //openLoading();
+            loading.start();
 
             // call API
             User.update(userInfo).then(function () {
                 $modal.modal('hide');
 
-                stopLoading();
+                loading.complete();
+                //stopLoading();
             }).catch(function (err) {
                 err.json && err.json().then((data) => {
                     console.error(data);
                     alert(`ERROR: \n${data.messages[0]}`);
-                    stopLoading();
+                    //stopLoading();
+                    loading.complete();
                 });
             });
         }

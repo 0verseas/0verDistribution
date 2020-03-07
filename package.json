@@ -4,7 +4,9 @@
   "description": "各校下載分發學生資料",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "harp compile src dist && babel dist/js -d dist/js",
+    "serve": "harp server src"
   },
   "author": "",
   "license": "ISC",
