@@ -105,7 +105,7 @@ var allStudentQuery = (function () {
                 }) // 以二進位制流方式讀取得到整份excel表格物件
                 var persons = []; // 儲存獲取到的資料
             } catch (e) {
-                console.log('檔案型別不正確');
+                alert('檔案型別不正確，請使用 Excel (.xlsx) 檔案！');
                 return;
             }
             // 表格的表格範圍，可用於判斷表頭是否數量是否正確
@@ -120,7 +120,7 @@ var allStudentQuery = (function () {
                     
                     // 僅限兩欄 姓名、生日
                     if (columnWidth != "B"){
-                        alert("格式錯誤！");
+                        alert("格式錯誤！請參考網頁範例檔！");
                         return;
                     }
 

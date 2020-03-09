@@ -92,7 +92,7 @@
 </div>
 
 <hr>
-<!-- TODO: 範例檔r -->
+
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -100,9 +100,17 @@
                 2. 使用上傳 Excel 查詢
             </div>
             <div class="card-body">
+                <div class="alert alert-warning">
+                    <ul  style="font-weight: bold;">
+                        <li>若查詢學生量眾多，可使用 Excel 上傳查詢； 請依照範例檔，填上學生姓名及生日（生日請符合格式 YYYYMMDD）。</li>
+                        <li> 資料在 姓名 及 生日 同時相符時才會列出。</li>
+                    </ul>
+                </div>
                 <button id="btn-upload" class="btn btn-info"><i class="fa fa-upload" aria-hidden="true"></i> 上傳
                     Excel</button>
                 <input id="file-input" type="file" class="file-upload" accept=".csv" style="display: none" />
+                &nbsp
+                <a href= "https://api.overseas.ncnu.edu.tw/forms/各校下載系統_上傳範例檔.xlsx" target="_blank">請參照上傳格式範例</a>
 
                 <hr>
                 <div id="excelResultBody">
