@@ -40,14 +40,14 @@ var User = (function () {
             }
         }).then(function (json) {
             if (!json[permission] || json[permission].has_banned) {  
-                alert("權限不足");              
+                //alert("權限不足");              
                 window.location.href = './login.html';
             } else {
                 _setUserInfo(json);
             }
         }).catch(function (err) {
             if (err == 401) {    
-                alert("權限不足");                 
+                //alert("權限不足");                 
                 window.location.href = './login.html';
             }
         });

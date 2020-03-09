@@ -31,7 +31,7 @@ var distributionList = (function () {
             }
         }).then(function (json) {
             if (json.has_banned) {
-                alert("權限不足");
+                //alert("權限不足");
                 window.location.href = './login.html';
             } else {
                 userData = json;
@@ -108,7 +108,7 @@ var distributionList = (function () {
             }
         }).catch(function (err) {
             if (err == 401) {
-                alert("權限不足");
+                //alert("權限不足");
                 window.location.href = './login.html';
             }
         });
