@@ -86,6 +86,11 @@ $(document).ready(function () {
                     break;
                 }
             }
+            // 檢查密碼複雜度
+            if (!checkPasswordComplex(password.val())) {
+                alert('密碼複雜度不足');
+                valid = false;
+            }
             // 檢查兩次輸入的密碼如果不同
             if (passwordSecond.val() !== password.val()) {
                 valid = false;
@@ -141,6 +146,14 @@ $(document).ready(function () {
                     loading.complete();
                 });
             });
+        }
+
+        // 確認密碼複雜度
+        function checkPasswordComplex(input) {
+            // 至少8碼且大寫、小寫、數字或特殊符號（數字那一排不含反斜線和豎線）至少兩種
+            // ^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[~!@#$%^&*()_+\-=]).{8,}$
+            const reg = /^((?=.*\d)(?=.*[A-Z])|(?=.*[a-z])(?=.*[A-Z])|(?=.*\d)(?=.*[a-z])|(?=.*\d)(?=.*[~!@#$%^&*()_+\-=])|(?=.*[a-z])(?=.*[~!@#$%^&*()_+\-=])|(?=.*[A-Z])(?=.*[~!@#$%^&*()_+\-=])).{8,}$/;
+            return !!reg.test(input);
         }
 
         return {
