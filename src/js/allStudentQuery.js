@@ -134,6 +134,7 @@ var allStudentQuery = (function () {
         };
         // 以二進位制方式開啟檔案
         fileReader.readAsBinaryString(files[0]);
+        $fileInput.val('');
     });
 
     // excel 上傳搜尋
