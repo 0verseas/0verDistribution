@@ -87,7 +87,7 @@ $(document).ready(function () {
                 }
             }
             // 檢查密碼複雜度
-            if (!checkPasswordComplex(password.val())) {
+            if (!checkPasswordComplex(password.val()) && password.val() !== "") {
                 alert('密碼複雜度不足');
                 valid = false;
             }
