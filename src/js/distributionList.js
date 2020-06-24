@@ -36,7 +36,7 @@ var distributionList = (function () {
             } else {
                 userData = json;
 
-                var school_id = userData.school_editor.school.id;
+                var school_id = userData.school_editor.school_code;
 
                 distributionApi.is_function_open_time()
                     .then((res) => {
