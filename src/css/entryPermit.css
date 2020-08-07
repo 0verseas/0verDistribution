@@ -29,6 +29,14 @@
     text-decoration: none;
 }
 
+.time {
+    color: #056388;
+    /*5e9ea4 4a67d4*/
+    font-size: large;
+    line-height: 30px;
+    font-weight: bold;
+}
+
 a {
     text-decoration: none !important;
 }
