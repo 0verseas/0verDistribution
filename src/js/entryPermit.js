@@ -1,24 +1,29 @@
 (()=>{
     const $entryPermit= $('#entry-permit');
+    const $lastDataTime= $('#last-data-time');
+    const $lastDownloadTime= $('#last-download-time');
     /**
      * init
      */
     _setData();
 
     function _setData() {
-        var userData;
-        User.isLogin().then(function (res) {
+        //取得資料更新與上次下載時間
+        User.getLastTime().then(function (res) {
             if (res.ok) {
                 return res.json();
             } else {
                 throw res.status;
             }
         }).then(function (json) {
-            if(!json.has_banned){
-                $entryPermit.attr('href', env.baseUrl + '/editors/taiwan-entry-permit');
-                $entryPermit.addClass('link');
-                $entryPermit.removeClass('no-link');
-            }
+            //沒有錯誤就渲染資料
+            $lastDataTime.text($lastDataTime.text()+json.last_NIA_create_time); //資料更新時間
+            $lastDownloadTime.text($lastDownloadTime.text()+json.last_record_time);//上次下載時間
+            $entryPermit.attr('href', env.baseUrl + '/editors/download-taiwan-entry-permit');//下載連結
+            //更換文字class來替換css
+            $entryPermit.addClass('link');
+            $entryPermit.removeClass('no-link');
+            
         }).catch(function (err) {
             if (err == 401) {
                 //alert("權限不足");

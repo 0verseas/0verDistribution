@@ -151,6 +151,12 @@ var User = (function () {
         })
     }
 
+    function  getLastTime() {
+        return fetch(baseUrl + '/editors/taiwan-entry-permit', {
+            credentials: 'include'
+        });
+    }
+
     return {
         login,
         logout,
@@ -159,7 +165,8 @@ var User = (function () {
         getUserInfo,
         update,
         queryBySingleKeyword,
-        queryByExcel
+        queryByExcel,
+        getLastTime
         //getLoginUserInfo
     }
 })();
