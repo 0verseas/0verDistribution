@@ -17,8 +17,10 @@
             }
         }).then(function (json) {
             //沒有錯誤就渲染資料
-            $lastDataTime.text($lastDataTime.text()+json.last_NIA_create_time); //資料更新時間
-            $lastDownloadTime.text($lastDownloadTime.text()+json.last_record_time);//上次下載時間
+            dataTime = (json.last_NIA_create_time != null) ?json.last_NIA_create_time :'目前無貴校學生資料';//沒有學生資料就顯示字串文字
+            downloadTime = (json.last_record_time != null) ?json.last_record_time :'尚未下載過學生資料';//沒有下載時間就顯示字串文字
+            $lastDataTime.text($lastDataTime.text()+dataTime); //資料更新時間
+            $lastDownloadTime.text($lastDownloadTime.text()+downloadTime);//上次下載時間
             $entryPermit.attr('href', env.baseUrl + '/editors/download-taiwan-entry-permit');//下載連結
             //更換文字class來替換css
             $entryPermit.addClass('link');
