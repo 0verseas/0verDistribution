@@ -1,0 +1,216 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap-sortable/2.0.0/bootstrap-sortable.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.css">
+<div class="row">
+    <span class="col-md-9 col-6" style="font-size: xx-large;">
+        學生列表
+    </span>
+    <div class = "justify-content-between">
+        <a class=" btn btn-success" id="student-list-download-button"><i class="fa fa-download" aria-hidden="true"></i>學生名冊下載</a>
+        <button class="btn btn-primary" id="student-list-upload-button"><i class="fa fa-upload" aria-hidden="true"></i>學生名冊匯入</button>
+        <input id="file-input" type="file" class="file-upload" accept=".csv" style="display: none" />
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>學年度</th>
+            <th>僑生編號</th>
+            <th>學生姓名</th>
+            <th>錄取系所</th>
+            <th>分發日期</th>
+            <th>分發文號</th>
+        </tr>
+    </thead>
+    <tbody id="student-list">
+    </tbody>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-hover">
+                <div id="pagination-container"></div>
+            </table>
+        </div>
+    </div>
+</table>
+
+<div class="modal fade" id="editStudentInfoModal" tabindex="-1" role="dialog" aria-labelledby="editStudentInfoTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" id="modal-studentInfo">
+
+            <div class="modal-header">
+                <h5>學生資料編輯</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div>
+                        <form>
+                            <div class="row">
+                                <div id="yearForm" class="form-group col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                學年度
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" id="year" disabled>
+                                    </div>
+                                </div>
+                                <div id="schoolNameForm" class="form-group col-6">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                學校名稱
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" id="schoolName" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    學生資料
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div id="nameForm" class="form-group col-6">
+                                            <label for="name">中文姓名</label>
+                                            <input type="text" class="form-control" id="name" disabled>
+                                        </div>
+                                        <div id="overseasIDForm" class="form-group col-6">
+                                            <label for="engName">僑生編號</label>
+                                            <input type="text" class="form-control" id="overseasId"disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div id="departmentForm" class="form-group col-12">
+                                            <label for="department">錄取系所</label>
+                                            <input type="text" class="form-control" id="department" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div id="distributeDateForm" class="form-group col-6">
+                                            <label for="distributeDate">分發日期</label>
+                                            <input type="text" class="form-control" id="distributeDate" disabled>
+                                        </div>
+                                        <div id="distributeNumberForm" class="form-group col-6">
+                                            <label for="distributeNumber">分發文號</label>
+                                            <input type="text" class="form-control" id="distributeNumber" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div id="confirmStatusForm" class="form-group col-6">
+                                            <label for="confirmStatus">確認狀態</label>
+                                            <input type="text" class="form-control" id="confirmStatus" disabled>
+                                        </div>
+                                        <div id="studentStatusForm" class="form-group col-6">
+                                            <label for="studentStatus">學籍狀態</label>
+                                            <input type="text" class="form-control" id="studentStatus" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="studentStatusReason">學籍狀態原因名稱</label>
+                                                <input type="text" class="form-control" id="studentStatusReason" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div id="statusDateForm" class="form-group col-6">
+                                            <label for="statusDate">學籍狀態生效日期</label>
+                                            <input type="text" class="form-control" id="statusDate" disabled>
+                                        </div>
+                                        <div id="registerDateForm" class="form-group col-6">
+                                            <label for="registerDate">初次註冊日期</label>
+                                            <input type="text" class="form-control" id="registerDate" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    調查資料
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="schoolYear">年級</label>
+                                                <input type="text" class="form-control" id="schoolYear">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="suspension">是否曾經休學(以學期計)</label>
+                                                <input type="text" class="form-control" id="suspension">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="academicCredit">累計實得學分數</label>
+                                                <input type="text" class="form-control" id="academicCredit">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="averageGrades">學業成績總平均</label>
+                                                <input type="text" class="form-control" id="averageGrades">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="classPopulation">全班(組)人數</label>
+                                                <input type="text" class="form-control" id="classPopulation">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="ranking">名次</label>
+                                                <input type="text" class="form-control" id="ranking">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="rankingOfPopulation">名次佔全班(組)百分比</label>
+                                                <input type="text" class="form-control" id="rankingOfPopulation">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <br/>                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="btn-studentInfo-save">儲存</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">離開</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/bootstrap-sortable/2.0.0/bootstrap-sortable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jschardet/1.6.0/jschardet.min.js" integrity="sha256-CEf/4H6Uoi1ITLUQxu/mUnVHZdabrr4lVGsTduOHkkQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.js"></script>
