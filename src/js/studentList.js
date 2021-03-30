@@ -27,13 +27,17 @@
 
     const $saveBtn = $('#btn-studentInfo-save');
     const $uploadBtn = $('#student-list-upload-button');
+    const $confirmedBtn = $('#student-list-confirmed-button');
     const $fileInput = $('#file-input');
+    
+    let confirmed_at = false;
 
     /**
      * bind event
      */
     $saveBtn.on('click', _handleSave);
     $uploadBtn.on('click', _uploadStudentList);
+    $confirmedBtn.on('click', _handleConfirmed);
     $fileInput.on('change', _handleFileInput);
 
     /**
@@ -68,6 +72,17 @@
                 }
             });
         }).then(function (){
+            if(confirmed_at){
+                $schoolYear.attr('disabled', true);
+                $suspension.attr('disabled', true);
+                $academicCredit.attr('disabled', true);
+                $averageGrades.attr('disabled', true);
+                $classPopulation.attr('disabled', true);
+                $ranking.attr('disabled', true);
+                $rankingOfPopulation.attr('disabled', true);
+                $uploadBtn.attr('disabled', true);
+                $confirmedBtn.attr('disabled', true).html(`<i class="fa fa-lock fa-fw" aria-hidden="true"></i>已確定並鎖定資料`).removeClass('btn-warning').addClass('btn-danger');
+            }
             loading.complete();
         }).catch(function (err) {
             loading.complete();
@@ -84,12 +99,13 @@
         json.forEach(function (data, index) {
             let studentHtml =`<tr class="btn-editStudentInfo" data-overseasid="${data[1]}" data-name="${data[2]}"><td>${index+1+((page-1)*20)}</td>`;
             data.forEach(function (value, index) {
-                if(index == 3 || index == 5 || index == 6){
+                if(index == 3 || index == 5 || index == 6 || index == 9){
                     
                 } else {
                     studentHtml+=`<td>${(value)}</td>`
                 }
             });
+            confirmed_at = (data[9] !== '');
             studentHtml+=`</tr>`;
             $studentList.append(studentHtml);
         });
@@ -194,9 +210,11 @@
 
     // 發送欲修改資料跟請求到後端
     function _saveEvent(data){
+        loading.start();
         User.saveStudentInfo(data)
         .then((res) => {
             if(res.ok){
+                loading.complete();
                 alert('儲存成功');
                 return ;
             } else {
@@ -204,8 +222,9 @@
             }
         })
         .catch((err) => {
-            err.json && err.json().then(() => {
-                alert('儲存失敗');
+            loading.complete();
+            err.json && err.json().then((json) => {
+                alert('儲存失敗:'+json);
             })
         })
     }
@@ -258,17 +277,58 @@
                 throw res;
             }
         })
-        .then(()=>{
-            alert('匯入成功');
+        .then((json)=>{
+            alert(json);
             window.location.reload();
             loading.complete();
         })
         .catch((err) => {
             err.json && err.json().then((data) => {
                 console.error(data);
-                alert('匯入失敗')
+                alert('匯入失敗:'+data)
             })
             loading.complete();
         });
+    }
+
+    function _handleConfirmed(){
+        // 使用者確認
+        swal({
+            title: '確認是否要確定並鎖定學生資料',
+            html: `鎖定後將無法進行任何的修改，請確定資料都已正確登記再鎖定。`,
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '確定',
+            cancelButtonText: '取消',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(()=>{
+            _confirmedEvent()
+        }).catch(()=>{
+        });
+    }
+
+    function _confirmedEvent(){
+        loading.start();
+        User.confirmedStudentInfo()
+        .then((res) => {
+            if(res.ok){
+                loading.complete();
+                alert('鎖定成功');
+                window.location.reload();
+                return ;
+            } else {
+                throw res;
+            }
+        })
+        .catch((err) => {
+            loading.complete();
+            err.json && err.json().then((json) => {
+                alert('鎖定失敗:'+json);
+            })
+        })        
     }
 })();

@@ -2,12 +2,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.0.8/pagination.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.2/sweetalert2.min.css">
 <div class="row">
-    <span class="col-md-9 col-6" style="font-size: xx-large;">
+    <span class="col-md-8 col-6" style="font-size: xx-large;">
         學生列表
     </span>
-    <div class = "justify-content-between">
-        <a class=" btn btn-success" id="student-list-download-button"><i class="fa fa-download" aria-hidden="true"></i>學生名冊下載</a>
-        <button class="btn btn-primary" id="student-list-upload-button"><i class="fa fa-upload" aria-hidden="true"></i>學生名冊匯入</button>
+    <div class = "justify-content-between" >
+        <a class=" btn btn-success" id="student-list-download-button"><i class="fa fa-download fa-fw" aria-hidden="true"></i>學生名冊下載</a>
+        <button class="btn btn-primary" id="student-list-upload-button"><i class="fa fa-upload fa-fw" aria-hidden="true"></i>學生名冊匯入</button>
+        <button class="btn btn-warning" id="student-list-confirmed-button"><i class="fa fa-check fa-fw" aria-hidden="true"></i>確定並鎖定資料</button>
         <input id="file-input" type="file" class="file-upload" accept=".csv" style="display: none" />
     </div>
 </div>

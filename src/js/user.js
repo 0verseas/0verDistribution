@@ -193,6 +193,13 @@ var User = (function () {
         });
     }
 
+    function  confirmedStudentInfo() {
+        return fetch(baseUrl + `/editors/indonesia/confirmed`, {
+            method: 'GET',
+			credentials: 'include'
+        });
+    }
+
     function CSVToArray(strData, strDelimiter) {
 		// Check to see if the delimiter is defined. If not,
 		// then default to comma.
@@ -259,7 +266,8 @@ var User = (function () {
         getStudentInfo,
         saveStudentInfo,
         CSVToArray,
-        uploadStudentList
+        uploadStudentList,
+        confirmedStudentInfo
         //getLoginUserInfo
     }
 })();
