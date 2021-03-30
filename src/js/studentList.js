@@ -9,8 +9,6 @@
     const $name = $modalStudentInfo.find('#name');
     const $overseasId = $modalStudentInfo.find('#overseasId');
     const $department = $modalStudentInfo.find('#department');
-    const $chineseGrade = $modalStudentInfo.find('#chineseGrade');
-    const $distributeGrade = $modalStudentInfo.find('#distributeGrade');
     const $distributeDate = $modalStudentInfo.find('#distributeDate');
     const $distributeNumber = $modalStudentInfo.find('#distributeNumber');
     const $confirmStatus = $modalStudentInfo.find('#confirmStatus');
@@ -84,9 +82,9 @@
         // 渲染 student 列表
         $studentList.html('');
         json.forEach(function (data, index) {
-            let studentHtml =`<tr class="btn-editStudentInfo" data-overseasid="${data[2]}" data-name="${data[3]}"><td>${index+1+((page-1)*20)}</td>`;
+            let studentHtml =`<tr class="btn-editStudentInfo" data-overseasid="${data[1]}" data-name="${data[2]}"><td>${index+1+((page-1)*20)}</td>`;
             data.forEach(function (value, index) {
-                if(index == 4 || index == 6 || index == 7){
+                if(index == 3 || index == 5 || index == 6){
                     
                 } else {
                     studentHtml+=`<td>${(value)}</td>`
