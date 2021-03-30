@@ -80,6 +80,7 @@
                 $classPopulation.attr('disabled', true);
                 $ranking.attr('disabled', true);
                 $rankingOfPopulation.attr('disabled', true);
+                $saveBtn.hide();
                 $uploadBtn.attr('disabled', true);
                 $confirmedBtn.attr('disabled', true).html(`<i class="fa fa-lock fa-fw" aria-hidden="true"></i>已確定並鎖定資料`).removeClass('btn-warning').addClass('btn-danger');
             }
