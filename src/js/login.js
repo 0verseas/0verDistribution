@@ -74,7 +74,7 @@ var login = (function () {
     
         grecaptcha.ready(function() {
             grecaptcha.execute(env.reCAPTCHA_site_key, {
-              action: 'login'
+              action: 'DistributionLogin'
             }).then(function(token) {
                 // token = document.getElementById('btn-login').value
                 loginForm.google_recaptcha_token=token;
