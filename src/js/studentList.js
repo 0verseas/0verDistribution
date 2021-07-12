@@ -18,12 +18,13 @@
     const $registerDate = $modalStudentInfo.find('#registerDate');
 
     const $schoolYear = $modalStudentInfo.find('#schoolYear');
-    const $suspension = $modalStudentInfo.find('#suspension');
     const $academicCredit = $modalStudentInfo.find('#academicCredit');
     const $averageGrades = $modalStudentInfo.find('#averageGrades');
     const $classPopulation = $modalStudentInfo.find('#classPopulation');
     const $ranking = $modalStudentInfo.find('#ranking');
-    const $rankingOfPopulation = $modalStudentInfo.find('#rankingOfPopulation');
+    const $suspension = $modalStudentInfo.find('#suspension');
+    const $transfer = $modalStudentInfo.find('#transfer');
+    const $dropOut = $modalStudentInfo.find('#dropOut');
 
     const $saveBtn = $('#btn-studentInfo-save');
     const $uploadBtn = $('#student-list-upload-button');
@@ -146,14 +147,13 @@
             $registerDate.val(json[13]);
 
             $schoolYear.val(json[14]);
-            $suspension.val(json[15]);
-
-            $academicCredit.val(json[16]);
-            $averageGrades.val(json[17]);
-
-            $classPopulation.val(json[18]);
-            $ranking.val(json[19]);
-            $rankingOfPopulation.val(json[20]);
+            $academicCredit.val(json[15]);
+            $averageGrades.val(json[16]);
+            $classPopulation.val(json[17]);
+            $ranking.val(json[18]);
+            $suspension.val(json[19]);
+            $transfer.val(json[20]);
+            $dropOut.val(json[21]);
         })
         .then(()=>{
             $editStudentInfoModal.modal({
@@ -176,24 +176,26 @@
             'name':document.getElementById('name').value,
             'overseasId':document.getElementById('overseasId').value,
             'schoolYear':document.getElementById('schoolYear').value,
-            'suspension':document.getElementById('suspension').value,
             'academicCredit':document.getElementById('academicCredit').value,
             'averageGrades':document.getElementById('averageGrades').value,
             'classPopulation':document.getElementById('classPopulation').value,
             'ranking':document.getElementById('ranking').value,
-            'rankingOfPopulation':document.getElementById('rankingOfPopulation').value
+            'suspension':document.getElementById('suspension').value,
+            'transfer':document.getElementById('transfer').value,
+            'dropOut':document.getElementById('dropOut').value
         };
         
         // 使用者確認
         swal({
             title: '確認是否要儲存並覆蓋學生資料',
             html: `更動後資料：<br/>年級：${data.schoolYear}<br/>
-            是否曾經休學(以學期計)：${data.suspension}<br/>
             累計實得學分數：${data.academicCredit}<br/>
             學業成績總平均：${data.averageGrades}<br/>
             全班(組)人數：${data.classPopulation}<br/>
             名次：${data.ranking}<br/>
-            名次佔全班(組)百分比：${data.rankingOfPopulation}`,
+            入學後是否曾經休學：${data.suspension}<br/>
+            入學後是否曾經轉系：${data.transfer}<br/>
+            入學後是否退學：${data.dropOut}<br/>`,
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
