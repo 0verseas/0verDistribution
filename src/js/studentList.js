@@ -116,9 +116,10 @@
 
     async function _handleEditStudentInfo() { // 學生列表 Modal 觸發
         $editStudentInfoModal.modal({backdrop: true, keyboard:true,}); // 讓使用者 點選外圍或按下esc時關閉Modal
-        _currentOverseasId = $(this).data('overseasid');
-        _currentName = $(this).data('name');
+        _currentOverseasId = $(this).data('overseasid');// 點選的學生僑生編號
+        _currentName = $(this).data('name');// 點選的學生姓名
 
+        // 傳送請求到後端 後端會使用學生僑編與姓名做篩選
         User.getStudentInfo({'overseasId':_currentOverseasId, 'name':_currentName})
         .then((res) => {
             if(res.ok){
@@ -128,6 +129,7 @@
             }
         })
         .then((json) => {
+            // 將後端傳送資料 渲染至對應物件上
             $year.val(json[0]);
             $schoolName.val(json[3]);
             
@@ -240,6 +242,7 @@
     function _handleFileInput(){
         const file = this.files[0];
         $fileInput.val('');
+        // 匯入檔案副檔名檢查
         if (file.name.split('.').pop() !== 'csv') {
 			alert('請匯入 .csv 檔');
         }
@@ -268,7 +271,7 @@
 		const header = csv_datas.shift();
         csv_datas.pop();
 		const fieldLength = header.length;
-        console.log(fieldLength);
+        // 匯入欄位數量檢查
 		if (fieldLength !== 21) {
 			alert ('匯入之 csv 欄位數量有誤');
 			return;
