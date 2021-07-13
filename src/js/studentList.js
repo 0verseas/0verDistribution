@@ -268,7 +268,8 @@
 		const header = csv_datas.shift();
         csv_datas.pop();
 		const fieldLength = header.length;
-		if (fieldLength !== 20) {
+        console.log(fieldLength);
+		if (fieldLength !== 21) {
 			alert ('匯入之 csv 欄位數量有誤');
 			return;
 		}
