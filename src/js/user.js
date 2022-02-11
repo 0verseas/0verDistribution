@@ -157,6 +157,12 @@ var User = (function () {
         });
     }
 
+    function  checkDownloadLink($school_id, $stage) {
+        return fetch(baseUrl + '/editors/distribution/download-student-apply-list/' + $school_id + '/' + $stage, {
+            credentials: 'include'
+        });
+    }
+
     return {
         login,
         logout,
@@ -166,7 +172,8 @@ var User = (function () {
         update,
         queryBySingleKeyword,
         queryByExcel,
-        getLastTime
+        getLastTime,
+        checkDownloadLink
         //getLoginUserInfo
     }
 })();
