@@ -32,8 +32,6 @@ var login = (function () {
      * init
      */
 
-    generateCode();
-
     // 登入：
     // 200: 跳轉至 /school
     // 401: 顯示錯誤訊息
