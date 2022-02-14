@@ -68,7 +68,7 @@ var login = (function () {
                         throw res;
                     }
                 }).then(function (json) {
-                    console.log(json);
+                    // console.log(json);
                     User.checkLogin('school_editor');
                     window.location.href = './distributionList.html'
                 }).catch(function (err) {
@@ -94,7 +94,7 @@ var login = (function () {
                 throw res
             }
         }).then(function (json) {
-            console.log(json);
+            // console.log(json);
         }).catch(function (err) {
             console.log(err);
         })
