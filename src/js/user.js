@@ -157,8 +157,8 @@ var User = (function () {
         });
     }
 
-    function  checkDownloadLink($school_id, $stage) {
-        return fetch(baseUrl + '/editors/distribution/download-student-apply-list/' + $school_id + '/' + $stage, {
+    function  checkDownloadLink($school_id, $stage, $action = 'check') {
+        return fetch(baseUrl + '/editors/distribution/download-student-apply-list/' + $school_id + '/' + $stage + '/' + $action, {
             credentials: 'include'
         });
     }

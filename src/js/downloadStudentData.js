@@ -35,7 +35,7 @@
                         $stage0.removeClass('no-link');
                         // 如果有檔案可以下載就 set up Link 沒有 set up alert
                         if(LinkRespone.status != 204){
-                            $stage0.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0d');
+                            $stage0.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0d/download');
                         } else{
                             $stage0.attr('onclick', `alert('無錄取學生！');`);
                         }
@@ -49,7 +49,7 @@
                         $stageN.removeClass('no-link');
                         // 如果有檔案可以下載就 set up Link 沒有 set up alert
                         if(LinkRespone.status != 204){
-                            $stageN.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0g');
+                            $stageN.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0g/download');
                         } else{
                             $stageN.attr('onclick', `alert('無錄取學生！');`);
                         }
@@ -63,7 +63,7 @@
                         $stageT.removeClass('no-link');
                         // 如果有檔案可以下載就 set up Link 沒有 set up alert
                         if(LinkRespone.status != 204){
-                            $stageT.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0t');
+                            $stageT.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/0t/download');
                         } else{
                             $stageT.attr('onclick', `alert('無錄取學生！');`);
                         }
@@ -77,7 +77,7 @@
                         $stage2.removeClass('no-link');
                         // 如果有檔案可以下載就 set up Link 沒有 set up alert
                         if(LinkRespone.status != 204){
-                            $stage2.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s2');
+                            $stage2.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s2/download');
                         } else{
                             $stage2.attr('onclick', `alert('無錄取學生！');`);
                         }
@@ -91,7 +91,7 @@
                         $stage5.removeClass('no-link');
                         // 如果有檔案可以下載就 set up Link 沒有 set up alert
                         if(LinkRespone.status != 204){
-                            $stage5.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s5');
+                            $stage5.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s5/download');
                         } else{
                             $stage5.attr('onclick', `alert('無錄取學生！');`);
                         }
