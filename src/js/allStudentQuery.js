@@ -17,6 +17,8 @@ var allStudentQuery = (function () {
     $selectYear.selectpicker();
     $selectField.selectpicker();
 
+    _init();
+
     loading.complete();
     // 關鍵字送出查詢
     function _searchBtn() {
@@ -201,6 +203,20 @@ var allStudentQuery = (function () {
             })
             loading.complete();
         })
+    }
+
+    function _init(){
+        // 先設定初始年份與抓取最新年份
+        const start_year = 2011;
+        const last_year = env.year;
+
+        // 開始渲染年份選擇器選項
+        $selectYear.append(`<option value="all" selected>不分年</option>`);
+        for(let i=last_year; i >= start_year; i--){
+            $selectYear.append(`<option value="${i}">${i} 秋季入學</option>`);
+        }
+        // 更新選擇器 不更新 剛剛渲染的物件不會顯示
+        $selectYear.selectpicker("refresh");
     }
 
 })(jQuery);
