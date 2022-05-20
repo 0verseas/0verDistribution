@@ -1,8 +1,12 @@
-version: '3'
-services:
+version: '3.7'
 
-  # Nginx Service
-  nginx:
+networks:
+  bridge:
+    external:
+      name: ${NETWORKS}
+
+services:
+  distribution:
     image: nginx:alpine
     container_name: 0verDistribution
     restart: unless-stopped
@@ -10,5 +14,11 @@ services:
     environment:
       - TZ=Asia/Taipei
     volumes:
-#      - /var/log/nginx:/var/log/nginx
       - ./app/dist/:/usr/share/nginx/html/school_allstudent/
+    networks:
+      - bridge
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.distribution.entrypoints=websecure"
+      - "traefik.http.routers.distribution.tls.certresolver=lets-encr"
+      - "traefik.http.routers.distribution.rule=Host(``) && PathPrefix(`/school_allstudent`)"
