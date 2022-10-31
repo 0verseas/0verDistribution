@@ -14,6 +14,7 @@ services:
     environment:
       - TZ=Asia/Taipei
     volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ./app/dist/:/usr/share/nginx/html/school_allstudent/
     networks:
       - bridge
@@ -22,3 +23,5 @@ services:
       - "traefik.http.routers.distribution.entrypoints=websecure"
       - "traefik.http.routers.distribution.tls.certresolver=lets-encr"
       - "traefik.http.routers.distribution.rule=Host(``) && PathPrefix(`/school_allstudent`)"
+      - "traefik.http.routers.distribution.tls.options=default"
+      - "traefik.http.routers.distribution.middlewares=secure-headers@file"
