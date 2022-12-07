@@ -22,6 +22,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.distribution.entrypoints=websecure"
       - "traefik.http.routers.distribution.tls.certresolver=lets-encr"
-      - "traefik.http.routers.distribution.rule=Host(``) && PathPrefix(`/school_allstudent`)"
+      - "traefik.http.routers.distribution.rule=Host(`${DOMAIN_NAME}`) && PathPrefix(`/school_allstudent`)"
       - "traefik.http.routers.distribution.tls.options=default"
       - "traefik.http.routers.distribution.middlewares=secure-headers@file"
