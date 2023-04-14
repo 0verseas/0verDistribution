@@ -9,8 +9,8 @@ var allStudentQuery = (function () {
     const $uploadBtn = $('#btn-upload');
     const $fileInput = $('#file-input');
     const $excelResultBody = $('#excelResultBody');
-    
-    
+
+
     $searchBtn.on('click', _searchBtn);
     $uploadBtn.on('click', _handleUpload);
 
@@ -45,7 +45,7 @@ var allStudentQuery = (function () {
                 else {
                     $students = response.data;
 
-                    $resultHtml = 
+                    $resultHtml =
                         `<table class="table table-striped ">
                             <thead class="bg-info text-white">
                             <tr>
@@ -60,7 +60,7 @@ var allStudentQuery = (function () {
                             </tr>
                         </thead>`;
                     $resultHtml += `<tbody>`;
-                    
+
                     for (let student of $students){
                         if (student.性別 == 'M'){
                             sex = '男';
@@ -68,7 +68,7 @@ var allStudentQuery = (function () {
                         else{
                             sex = '女';
                         }
-                        $resultHtml += 
+                        $resultHtml +=
                         `<tr>
                             <th scope="row">${student.僑編}</th>
                             <td>${student.名字} <br> ${student.英文名字}</td>
@@ -119,7 +119,7 @@ var allStudentQuery = (function () {
                     //console.log(fromTo);
                     columnWidth = fromTo.split(":");
                     columnWidth = columnWidth[1].substr(0,1);
-                    
+
                     // 僅限兩欄 姓名、生日
                     if (columnWidth != "B"){
                         alert("格式錯誤！請參考網頁範例檔！");
