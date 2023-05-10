@@ -11,7 +11,7 @@ var distributionList = (function () {
     const $s3 = $('#s3'); // 聯分第一梯次
     const $s4 = $('#s4'); // 聯分第一梯次
     const $s5 = $('#s5'); // 聯分第一梯次
-    
+
     /**
      * bind event
      */
@@ -113,7 +113,7 @@ var distributionList = (function () {
             }
         });
 
-        
+
     }
 
 })(jQuery);

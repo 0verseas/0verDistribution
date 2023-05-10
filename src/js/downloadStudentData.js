@@ -3,6 +3,7 @@
     const $stageN = $('#stage-N');
     const $stageT = $('#stage-T');
     const $stage2 = $('#stage-2');
+    const $stage3 = $('#stage-3');
     const $stage5 = $('#stage-5');
     /**
      * init
@@ -54,7 +55,7 @@
                             $stageN.attr('onclick', `alert('無錄取學生！');`);
                         }
                     }
-                }    
+                }
                 if(openTimeData.s0_tech == 1 ){
                     // 確認是否有檔案可以下載
                     const LinkRespone = await User.checkDownloadLink(school_id, '0t');
@@ -80,6 +81,20 @@
                             $stage2.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s2/download');
                         } else{
                             $stage2.attr('onclick', `alert('無錄取學生！');`);
+                        }
+                    }
+                }
+                if(openTimeData.s3_depart == 1 ){
+                    // 確認是否有檔案可以下載
+                    const LinkRespone = await User.checkDownloadLink(school_id, 's3');
+                    if(LinkRespone.ok){
+                        $stage3.addClass('link');
+                        $stage3.removeClass('no-link');
+                        // 如果有檔案可以下載就 set up Link 沒有 set up alert
+                        if(LinkRespone.status != 204){
+                            $stage3.attr('href', env.baseUrl + '/editors/distribution/download-student-apply-list/' + school_id + '/s3/download');
+                        } else{
+                            $stage3.attr('onclick', `alert('無錄取學生！');`);
                         }
                     }
                 }
