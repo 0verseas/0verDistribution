@@ -213,7 +213,7 @@ var allStudentQuery = (function () {
         // 開始渲染年份選擇器選項
         $selectYear.append(`<option value="all" selected>不分年</option>`);
         for(let i=last_year; i >= start_year; i--){
-            $selectYear.append(`<option value="${i}">${i} 秋季入學</option>`);
+            $selectYear.append(`<option value="${i}">${i}年 入學</option>`);
         }
         // 更新選擇器 不更新 剛剛渲染的物件不會顯示
         $selectYear.selectpicker("refresh");
