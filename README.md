@@ -21,29 +21,57 @@ npm run build
 ```
 the built static files will be in the `dist`
 
-## Deploy Docker Develop Environment 🐳
-Just need to modify related documents(env.js, .env, docker-compose.yml)
+## Deploy Docker Develop Environment
+### Startup Preparation
+if dev then
+```
+git clone https://github.com/0verseas/0verDistribution.git ./0verDistribution-dev/
+cd ./0verDistribution-dev/
+git checkout dev
+```
+if official then
+```
+git clone https://github.com/0verseas/0verDistribution.git
+cd ./0verDistribution/
+```
 
-First of all, git clone https://github.com/0verseas/0verDistribution.git than switch folder to 0verDistribution/, if dev then git clone https://github.com/0verseas/0verDistribution.git ./0verDistribution-dev and do below
-  - ``cd ./0verDistribution/`` or ``cd ./0verDistribution-dev/``
-    - switch git branch(if dev then do this step)
-      - ``sudo git checkout dev``
-    - ``sudo cp src/js/env.js.example src/js/env.js``
-    - edit src/js/env.js (modify baseUrl, reCAPTCHA_site_key, year)
-    - docker build
-      - ``sudo npm run docker-build``
-
-Secondly, switch folder to 0verDistribution/docker/ or 0verDistribution-dev/docker/ and do below
-- ``cd ./docker/``
-  - ``sudo cp .env.example .env``
-  - edit .env (modify NETWORKS, DOMAIN_NAME, ENTRYPOINTS)
-  - if you want to exclude IPs other than ours then edit docker-compose.yaml open ncnuipwhitlist@file label setting
-
-Finally, did all the above mentioned it after that the last move is docker-compose up
-- ``sudo docker-compose up -d``
-
-If want to stop docker-compose
-- ``sudo docker-compose down``
-
-if don‘t want to stop container and apply docker-compose edited setting then
-- ``sudo docker-compose up --detach``
+```
+npm install
+cp ./src/env.js.example ./src/env.js
+cp ./docker/.env.example ./docker/.env
+```
+#### Edit Config Files
+modify baseUrl, isProduction, reCAPTCHA_site_key, year
+```
+vim ./src/env.js
+```
+modfiy NETWORKS, DOMAIN_NAME, ENTRYPOINTS
+*If dev then modfiy COMPOSE_PROJECT_NAME and CONTAINER_NAME*
+```
+vim ./docker/.env
+```
+#### *If want Container Block Exclude IPs Other than Ours*
+modify uncomment row 28
+```
+vim ./docker/docker-compose.yaml
+```
+### Build
+```
+sudo npm run docker-build
+```
+### StartUp
+*at ./docker/ path*
+```
+sudo docker-compose up -d
+```
+### Stop
+*at ./docker/ path*
+```
+sudo docker-compose down
+```
+### ✨Nonstop Container and Apply New Edit Docker-Compose Setting (Use Only Container is running)✨
+The command will not effect on the running container if you have not edited any of the settings on docker-compose.yaml
+*at ./docker/ path*
+```
+sudo docker-compose up --detach
+```
