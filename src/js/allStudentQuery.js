@@ -14,9 +14,6 @@ var allStudentQuery = (function () {
     $searchBtn.on('click', _searchBtn);
     $uploadBtn.on('click', _handleUpload);
 
-    $selectYear.selectpicker();
-    $selectField.selectpicker();
-
     _init();
 
     loading.complete();
@@ -31,6 +28,7 @@ var allStudentQuery = (function () {
         }
         else{
             User.queryBySingleKeyword($param_1, $param_2, $param_3).then(response => {
+                let $resultHtml = '';
                 if (!response.ok) {
                     switch (response.statusCode) {
                         case 404:
@@ -44,47 +42,48 @@ var allStudentQuery = (function () {
                 }
                 else {
                     $students = response.data;
-
-                    $resultHtml =
-                        `<table class="table table-striped ">
-                            <thead class="bg-info text-white">
-                            <tr style="vertical-align: middle;">
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">僑生編號</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center;">學生姓名</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:4%;">性別</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center;">國家</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">生日</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發日期</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發文號</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center; width:5%;">學制</th>
-                                <th scope="col" style="vertical-align: middle; text-align:center;">分發校系</th>
-                            </tr>
-                        </thead>`;
-                    $resultHtml += `<tbody>`;
-
-                    for (let student of $students){
-                        if (student.性別 == 'M'){
-                            sex = '男';
-                        }
-                        else{
-                            sex = '女';
-                        }
-                        $resultHtml +=
-                        `<tr style="vertical-align: middle;">
-                            <th scope="row" style="vertical-align: middle; text-align:center;">${student.僑編}</th>
-                            <td style="vertical-align: middle; text-align:center;">${student.名字} <br> ${student.英文名字}</td>
-                            <td style="vertical-align: middle; text-align:center;">${sex}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.僑居地}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.生日}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.分發日期}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.分發文號}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.學制}</td>
-                            <td style="vertical-align: middle; text-align:center;">${student.分發學校} <br> ${student.分發學系}</td>
-                        </tr>`;
-                    }
-
                     if ($students.length == 0) {
                         $resultHtml = `<div style="font-size:large; font-weight:bold; color:blue">無相關資料</div>`;
+                    } else {
+                        $resultHtml =`
+                        <table class="table table-striped ">
+                            <thead class="bg-info text-white">
+                                <tr style="vertical-align: middle;">
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">僑生編號</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center;">學生姓名</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:4%;">性別</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center;">國家</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">生日</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發日期</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發文號</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center; width:5%;">學制</th>
+                                    <th scope="col" style="vertical-align: middle; text-align:center;">分發校系</th>
+                                </tr>
+                            </thead>
+                        `;
+                        $resultHtml += `<tbody>`;
+                        for (let student of $students){
+                            if (student.性別 == 'M'){
+                                sex = '男';
+                            }
+                            else{
+                                sex = '女';
+                            }
+                            $resultHtml +=`
+                                <tr style="vertical-align: middle;">
+                                    <th scope="row" style="vertical-align: middle; text-align:center;">${student.僑編}</th>
+                                    <td style="vertical-align: middle; text-align:center;">${student.名字} <br> ${student.英文名字}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${sex}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.僑居地}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.生日}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.分發日期}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.分發文號}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.學制}</td>
+                                    <td style="vertical-align: middle; text-align:center;">${student.分發學校} <br> ${student.分發學系}</td>
+                                </tr>
+                            `;
+                        }
+                        $resultHtml +='</tbody></table>';
                     }
                 }
                 $resultBody.html($resultHtml);
@@ -154,45 +153,50 @@ var allStudentQuery = (function () {
         .then((json) => {
             $students = json;
 
-            $resultHtml = '';
-            $resultHtml =
-                `<table class="table table-striped ">
-                            <thead class="bg-info text-white">
-                            <tr>
-                                <th scope="col">僑生編號</th>
-                                <th scope="col">學生姓名</th>
-                                <th scope="col">性別</th>
-                                <th scope="col">國家</th>
-                                <th scope="col">生日</th>
-                                <th scope="col">分發日期</th>
-                                <th scope="col">分發文號</th>
-                                <th scope="col">分發校系</th>
-                            </tr>
-                        </thead>`;
-            $resultHtml += `<tbody>`;
-
-            for (let student of $students) {
-                if (student[3] == 'M') {
-                    sex = '男';
-                }
-                else {
-                    sex = '女';
-                }
-                $resultHtml +=
-                    `<tr>
-                            <th scope="row">${student[0]}</th>
-                            <td>${student[1]} <br> ${student[2]}</td>
-                            <td>${sex}</td>
-                            <td>${student[4]}</td>
-                            <td>${student[5]}</td>
-                            <td>${student[6]}</td>
-                            <td>${student[7]}</td>
-                            <td>${student[8]} <br> ${student[9]}</td>
-                        </tr>`;
-            }
-
+            let $resultHtml = '';
             if ($students.length == 0) {
                 $resultHtml = `<div style="font-size:large; font-weight:bold; color:blue">無相關資料</div>`;
+            } else {
+                $resultHtml =`
+                <table class="table table-striped ">
+                    <thead class="bg-info text-white">
+                        <tr style="vertical-align: middle;">
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">僑生編號</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center;">學生姓名</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:4%;">性別</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center;">國家</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">生日</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發日期</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發文號</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center; width:5%;">學制</th>
+                            <th scope="col" style="vertical-align: middle; text-align:center;">分發校系</th>
+                        </tr>
+                    </thead>
+                `;
+                $resultHtml += `<tbody>`;
+
+                for (let student of $students) {
+                    if (student[3] == 'M') {
+                        sex = '男';
+                    }
+                    else {
+                        sex = '女';
+                    }
+                    $resultHtml +=`
+                        <tr style="vertical-align: middle;">
+                            <th scope="row" style="vertical-align: middle; text-align:center;">${student[0]}</th>
+                            <td style="vertical-align: middle; text-align:center;">${student[1]} <br> ${student[2]}</td>
+                            <td style="vertical-align: middle; text-align:center;">${sex}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student[4]}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student[5]}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student[6]}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student[7]}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student['system']}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student[8]} <br> ${student[9]}</td>
+                        </tr>
+                    `;
+                }
+                $resultHtml +='</tbody></table>';
             }
 
             $excelResultBody.html($resultHtml);
@@ -217,8 +221,13 @@ var allStudentQuery = (function () {
         for(let i=last_year; i >= start_year; i--){
             $selectYear.append(`<option value="${i}">${i}年 入學</option>`);
         }
+
+        // 初始化選擇器 順便 渲染剛剛新增的選項物件
+        $selectYear.selectpicker();
+        $selectField.selectpicker();
+
         // 更新選擇器 不更新 剛剛渲染的物件不會顯示
-        $selectYear.selectpicker("refresh");
+        // $selectYear.selectpicker("refresh");
     }
 
 })(jQuery);
