@@ -48,15 +48,16 @@ var allStudentQuery = (function () {
                     $resultHtml =
                         `<table class="table table-striped ">
                             <thead class="bg-info text-white">
-                            <tr>
-                                <th scope="col">僑生編號</th>
-                                <th scope="col">學生姓名</th>
-                                <th scope="col">性別</th>
-                                <th scope="col">國家</th>
-                                <th scope="col">生日</th>
-                                <th scope="col">分發日期</th>
-                                <th scope="col">分發文號</th>
-                                <th scope="col">分發校系</th>
+                            <tr style="vertical-align: middle;">
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">僑生編號</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center;">學生姓名</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:4%;">性別</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center;">國家</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:6%;">生日</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發日期</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:12%;">分發文號</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center; width:5%;">學制</th>
+                                <th scope="col" style="vertical-align: middle; text-align:center;">分發校系</th>
                             </tr>
                         </thead>`;
                     $resultHtml += `<tbody>`;
@@ -69,15 +70,16 @@ var allStudentQuery = (function () {
                             sex = '女';
                         }
                         $resultHtml +=
-                        `<tr>
-                            <th scope="row">${student.僑編}</th>
-                            <td>${student.名字} <br> ${student.英文名字}</td>
-                            <td>${sex}</td>
-                            <td>${student.僑居地}</td>
-                            <td>${student.生日}</td>
-                            <td>${student.分發日期}</td>
-                            <td>${student.分發文號}</td>
-                            <td>${student.分發學校} <br> ${student.分發學系}</td>
+                        `<tr style="vertical-align: middle;">
+                            <th scope="row" style="vertical-align: middle; text-align:center;">${student.僑編}</th>
+                            <td style="vertical-align: middle; text-align:center;">${student.名字} <br> ${student.英文名字}</td>
+                            <td style="vertical-align: middle; text-align:center;">${sex}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.僑居地}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.生日}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.分發日期}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.分發文號}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.學制}</td>
+                            <td style="vertical-align: middle; text-align:center;">${student.分發學校} <br> ${student.分發學系}</td>
                         </tr>`;
                     }
 
