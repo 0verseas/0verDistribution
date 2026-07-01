@@ -12,11 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "@popperjs/core": "^2.11.5",
-    "bootstrap": "^5.1.0",
-    "harp": "^0.41.2"
+    "@babel/cli": "^7.29.7",
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.8",
+    "harp": "^0.49.3"
   }
 }
